@@ -1,0 +1,10 @@
+.backButton {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1em;
+  user-select: none;
+
+  &:hover {
+    color: #00a1be;
+  }
+}
