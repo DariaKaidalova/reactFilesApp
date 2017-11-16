@@ -18,7 +18,7 @@ export class List extends React.Component {
     }
 
     render() {
-        const { loadFolderDetails, goBack, info, folders, files } = this.props;
+        const { loadFolderDetails, goBack, info, folders, files, deleteFile } = this.props;
 
         return (
             <div className={ cls(grid["container-m"], listStyles.folderDetails) }>

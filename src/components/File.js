@@ -5,3 +5,11 @@ import styles from "./File.scss";
 export default function File({ name, id }) {
     return <div className={ styles.file }>{ name } <DeleteButton id={ id }/></div>;
 }
+
+// export default function connectFile(actions) {
+//     return connect(
+//         ({ file }) => file,
+//         (dispatch) => bindActionCreators(actions, dispatch)
+//     )(File);
+// }
+
