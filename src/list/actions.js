@@ -38,5 +38,7 @@ const createFetchFoldersList = (api) => (ids) => {
 const createFetchFilesDetails = (api) => (ids) => {
     const all = Promise.all(ids.map((id) => api.file().get(id)));
 
+    console.log(({ type: FILES_DETAILS_FETCHED, payload: all }));
+
     return ({ type: FILES_DETAILS_FETCHED, payload: all });
 };
