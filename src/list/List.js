@@ -37,7 +37,7 @@ export class List extends React.Component {
                 }
                 {
                     files.map(({ name, id }) => (
-                        <File key={ id } name={name} id={id}/>
+                        <File key={ id } name={name} id={id} deleteFile={deleteFile}/>
                     ))
                 }
             </div>

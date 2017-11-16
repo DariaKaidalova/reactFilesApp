@@ -23,9 +23,11 @@ export const createGoBack = (api) => (parentId) => (dispatch) => {
 };
 
 export const createDeleteFile = (api) => (id) => (dispatch) => {
-    api.file().delete(id).then((folder) => {
-        dispatch(createLoadFolderDetails(api)(folder));
-    });
+    console.log('deleted file id='+id);
+    // api.file().delete(id).then((folder) => {
+    //     console.log('deleted file id='+id);
+    //     dispatch(createLoadFolderDetails(api)(folder));
+    // });
 };
 
 
@@ -45,8 +47,6 @@ const createFetchFoldersList = (api) => (ids) => {
 
 const createFetchFilesDetails = (api) => (ids) => {
     const all = Promise.all(ids.map((id) => api.file().get(id)));
-
-    console.log(({ type: FILES_DETAILS_FETCHED, payload: all }));
 
     return ({ type: FILES_DETAILS_FETCHED, payload: all });
 };
