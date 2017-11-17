@@ -19,6 +19,8 @@ export const createFetchRootData = (api) => () => (dispatch) =>
 
 export const createGoBack = (api) => (parentId) => (dispatch) => {
     api.folder().get(parentId).then((folder) => {
+        console.log('createGoBack');
+        console.log(folder);
         dispatch(createLoadFolderDetails(api)(folder));
     });
 };
@@ -30,10 +32,11 @@ export const createDeleteFile = (api) => (id) => (dispatch) => {
     });
 };
 
-export const createDeleteFolder = (api) => (id) => (dispatch) => {
-    api.folder().delete(id).then((folderDeleteResponse) => {
-        console.log(folderDeleteResponse);
-        console.log('removed folder id='+id);
+export const createDeleteFolder = (api) => (info,id) => (dispatch) => {
+    api.folder().delete(id).then((folder) => {
+        console.log('createDeleteFolder, info:');
+        console.log(info);
+        dispatch(createLoadFolderDetails(api)(info));
     });
 };
 

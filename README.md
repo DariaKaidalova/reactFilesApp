@@ -13,8 +13,8 @@ Navigate to http://localhost:8080
 ## Task 1
 ### As a user I want to be able to delete a file and folder
 #### Acceptance criteria
-* Delete button is visible next to each item on the list
-* Clicking on the button removes item on backend
+* Delete button is visible next to each item on the list+
+* Clicking on the button removes item on backend+
 (See readme.md in server directory for API documentation)
 * Delete button is replaced with waiting indicator until server responds
 * On success response from server item is removed from the list

@@ -9,7 +9,6 @@ function createDelete(fetch) {
 }
 
 function preparePath(path, id = "") {
-    console.log(`${ API_PATH }/${ path }/${ id }`);
     return `${ API_PATH }/${ path }/${ id }`;
 }
 
