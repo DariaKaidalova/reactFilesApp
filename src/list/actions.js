@@ -31,7 +31,7 @@ export const createDeleteFile = (api) => (parentId, id) => (dispatch) => {
     });
 };
 
-export const createDeleteFolder = (api) => (info,id) => (dispatch) => {
+export const createDeleteFolder = (api) => (info, id) => (dispatch) => {
     api.folder().delete(id).then((folder) => {
         dispatch(createGoBack(api)(info.parentId));
     });
