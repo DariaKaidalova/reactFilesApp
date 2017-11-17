@@ -18,7 +18,7 @@ export class List extends React.Component {
     }
 
     render() {
-        const { loadFolderDetails, goBack, info, folders, files, deleteFile } = this.props;
+        const { loadFolderDetails, goBack, info, folders, files, deleteFile, deleteFolder } = this.props;
 
         return (
             <div className={ cls(grid["container-m"], listStyles.folderDetails) }>
@@ -30,14 +30,16 @@ export class List extends React.Component {
                     folders.map((folder) => (
                         <Folder
                             key={ folder.id }
+                            id={ folder.id }
                             name={ folder.name }
                             onClick={ () => loadFolderDetails(folder) }
+                            deleteFolder={ deleteFolder }
                         />
                     ))
                 }
                 {
                     files.map(({ name, id }) => (
-                        <File key={ id } name={name} id={id} deleteFile={deleteFile}/>
+                        <File key={ id } name={name} id={id} deleteFile={ deleteFile }/>
                     ))
                 }
             </div>

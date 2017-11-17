@@ -7,7 +7,8 @@ export default function createActions(api) {
         loadFolderDetails: createLoadFolderDetails(api),
         fetchRootData: createFetchRootData(api),
         goBack: createGoBack(api),
-        deleteFile: createDeleteFile(api)
+        deleteFile: createDeleteFile(api),
+        deleteFolder: createDeleteFolder(api),
     }
 };
 
@@ -23,13 +24,17 @@ export const createGoBack = (api) => (parentId) => (dispatch) => {
 };
 
 export const createDeleteFile = (api) => (id) => (dispatch) => {
-    console.log('deleted file id='+id);
-    console.log(api.file());
     api.file().delete(id).then((folder) => {
         console.log(folder);
         console.log('removed file id='+id);
     });
+};
 
+export const createDeleteFolder = (api) => (id) => (dispatch) => {
+    api.folder().delete(id).then((folder) => {
+        console.log(folder);
+        console.log('removed folder id='+id);
+    });
 };
 
 

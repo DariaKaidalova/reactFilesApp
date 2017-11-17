@@ -5,10 +5,11 @@ function createGet(fetch) {
 }
 
 function createDelete(fetch) {
-    return (path) => (id) => fetch(preparePath(path, id), {method: 'delete'}).then((response) => response.json());
+    return (path) => (id) => fetch(preparePath(path, id), { method: 'delete' }); //.then((response) => response.json()).catch( err => console.error(err));
 }
 
 function preparePath(path, id = "") {
+    console.log(`${ API_PATH }/${ path }/${ id }`);
     return `${ API_PATH }/${ path }/${ id }`;
 }
 
@@ -18,7 +19,8 @@ export function createApi(fetch) {
 
     return {
         folder: () => ({
-            get: get("folder")
+            get: get("folder"),
+            delete: del("folder")
         }),
         file: () => ({
             get: get("file"),
