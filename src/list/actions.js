@@ -8,7 +8,7 @@ export default function createActions(api) {
         fetchRootData: createFetchRootData(api),
         goBack: createGoBack(api),
         deleteFile: createDeleteFile(api),
-        deleteFolder: createDeleteFolder(api),
+        deleteFolder: createDeleteFolder(api)
     }
 };
 
@@ -19,8 +19,6 @@ export const createFetchRootData = (api) => () => (dispatch) =>
 
 export const createGoBack = (api) => (parentId) => (dispatch) => {
     api.folder().get(parentId).then((folder) => {
-        console.log('createGoBack');
-        console.log(folder);
         dispatch(createLoadFolderDetails(api)(folder));
     });
 };
@@ -28,15 +26,14 @@ export const createGoBack = (api) => (parentId) => (dispatch) => {
 export const createDeleteFile = (api) => (parentId, id) => (dispatch) => {
     api.file().delete(id).then((fileDeleteResponse) => {
         dispatch(createGoBack(api)(parentId));
-    });
+    }).catch(error => console.error(error));
 };
 
 export const createDeleteFolder = (api) => (info, id) => (dispatch) => {
     api.folder().delete(id).then((folder) => {
         dispatch(createGoBack(api)(info.parentId));
-    });
+    }).catch(error => console.error(error));
 };
-
 
 const createLoadFolderDetails = (api) => (folder) => (dispatch) => {
     return Promise.all([
