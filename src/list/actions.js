@@ -24,10 +24,12 @@ export const createGoBack = (api) => (parentId) => (dispatch) => {
 
 export const createDeleteFile = (api) => (id) => (dispatch) => {
     console.log('deleted file id='+id);
-    // api.file().delete(id).then((folder) => {
-    //     console.log('deleted file id='+id);
-    //     dispatch(createLoadFolderDetails(api)(folder));
-    // });
+    console.log(api.file());
+    api.file().delete(id).then((folder) => {
+        console.log(folder);
+        console.log('removed file id='+id);
+    });
+
 };
 
 
