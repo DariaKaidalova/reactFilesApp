@@ -36,7 +36,7 @@ export const createDeleteFolder = (api) => (info,id) => (dispatch) => {
     api.folder().delete(id).then((folder) => {
         console.log('createDeleteFolder, info:');
         console.log(info);
-        dispatch(createLoadFolderDetails(api)(info));
+        dispatch(createGoBack(api)(info.parentId));
     });
 };
 

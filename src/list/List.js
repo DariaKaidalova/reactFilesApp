@@ -30,8 +30,6 @@ export class List extends React.Component {
                         <Folder
                             key={ folder.id }
                             folder={folder}
-                            // id={ folder.id }
-                            // name={ folder.name }
                             onClick={ () => loadFolderDetails(folder) }
                             deleteFolder={ deleteFolder }
                         />
