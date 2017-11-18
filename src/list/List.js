@@ -18,7 +18,8 @@ export class List extends React.Component {
     }
 
     render() {
-        const { loadFolderDetails, goBack, info, folders, files, deleteFile, deleteFolder } = this.props;
+        const { loadFolderDetails, goBack, info, folders, files, deleteFile, deleteFolder, isFolderError, isFileError } = this.props;
+        console.log('list.js, isFolderError = '+isFolderError);
         return (
             <div className={ cls(grid["container-m"], listStyles.folderDetails) }>
                 <nav className={ listStyles.folderNavigation }>
@@ -28,21 +29,23 @@ export class List extends React.Component {
                 {
                     folders.map((folder) => (
                         <Folder
-                            key={ folder.id }
+                            key={folder.id}
                             folder={folder}
                             onClick={ () => loadFolderDetails(folder) }
                             deleteFolder={ deleteFolder }
+                            error={isFolderError}
                         />
                     ))
                 }
                 {
                     files.map(({ name, id, parentId }) => (
-                        <File 
+                        <File
                             key={ id } 
                             name={name} 
                             id={id}
                             parentId={parentId} 
-                            deleteFile={ deleteFile }/>
+                            deleteFile={ deleteFile }
+                            error={isFileError}/>
                     ))
                 }
             </div>
