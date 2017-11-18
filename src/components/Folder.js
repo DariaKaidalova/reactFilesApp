@@ -10,9 +10,7 @@ export default function Folder({ folder, onClick, deleteFolder, error }) {
   return (<div>
             <div className={ styles.folder } onClick={ onClick }>{ folder.name }</div>
             <DeleteButton info={folder} id={folder.id} error={error} deleteAction={deleteFolder}/>
-            if(error) {
-              <ErrorMessage message={`Folder ${folder.name} cannot be removed!`}/>
-            }
+            <ErrorMessage message={`Folder ${folder.name} cannot be removed!`} error={error}/>
           </div>
         );
 }
