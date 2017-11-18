@@ -2,7 +2,13 @@ export const FOLDER_INFO_FETCHED = "folderInfoFetched";
 export const FOLDERS_DETAILS_FETCHED = "foldersDetailsFetched";
 export const FILES_DETAILS_FETCHED = "filesDetailsFetched";
 
+export const FOLDER_IS_DELETED = "folderIsDeleted";
+export const FOLDER_IS_NOT_DELETED = "folderIsNotDeleted";
+export const FILES_IS_DELETED = "fileIsDeleted";
+export const FILES_IS_NOT_DELETED = "fileIsNotDeleted";
+
 export default function createActions(api) {
+    console.log('action');
     return {
         loadFolderDetails: createLoadFolderDetails(api),
         fetchRootData: createFetchRootData(api),

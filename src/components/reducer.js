@@ -1,4 +1,4 @@
-import { FOLDER_INFO_FETCHED, FOLDERS_DETAILS_FETCHED, FILES_DETAILS_FETCHED } from "./actions";
+import { FOLDER_IS_DELETED, FOLDER_IS_NOT_DELETED, FILES_IS_DELETED, FILES_IS_NOT_DELETED } from "./actions";
 
 export default function reducer(state = { folders: [], files: [], info: {} }, { type, payload }) {
     console.log(type);

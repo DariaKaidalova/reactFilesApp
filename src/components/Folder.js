@@ -4,6 +4,7 @@ import ErrorMessage from "./ErrorMessage";
 import styles from "./Folder.scss";
 
 export default function Folder({ folder, onClick, deleteFolder }) {
+  console.log(folder);
   return (<div>
             <div className={ styles.folder } onClick={ onClick }>{ folder.name }</div>
             <DeleteButton info={folder} id={folder.id} deleteAction={deleteFolder}/>
