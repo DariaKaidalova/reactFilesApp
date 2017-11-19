@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import DeleteButton from './DeleteButton'
 
 export default function DeleteButtonReducer(state = { visibility: true }, { type, payload }) {
-  console.log(state);
+  console.log('state');
   console.log(state);
 }
 

@@ -30,7 +30,7 @@ export const createGoBack = (api) => (parentId) => (dispatch) => {
 };
 
 export const createDeleteFile = (api) => (parentId, id, error) => (dispatch) => {
-    api.file().delete('///').then((fileDeleteResponse) => {
+    api.file().delete(id).then((fileDeleteResponse) => {
         if(fileDeleteResponse.ok) {
           dispatch({ type: FILE_IS_DELETED, payload: error });
           dispatch(createGoBack(api)(parentId));
@@ -48,7 +48,7 @@ export const createDeleteFile = (api) => (parentId, id, error) => (dispatch) => 
 };
 
 export const createDeleteFolder = (api) => (info, id, error) => (dispatch) => {
-    api.folder().delete('//////').then((folderDeleteResponse) => {
+    api.folder().delete(id).then((folderDeleteResponse) => {
       if(folderDeleteResponse.ok) {
         dispatch({ type: FOLDER_IS_DELETED, payload: error });
         dispatch(createGoBack(api)(info.parentId));
