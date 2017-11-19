@@ -1,10 +1,16 @@
 import { connect } from 'react-redux'
-//import { setVisibility } from '../list/actions'
+import { BUTTON_IS_VISIBLE, BUTTON_IS_NOT_VISIBLE } from '../list/actions'
 import DeleteButton from './DeleteButton'
 
-export default function DeleteButtonReducer(state = { visibility: true }, { type, payload }) {
-  console.log('state');
+const changeDeleteButtonStates = (state = { visibility: true }) => {
+  console.log('state::::');
   console.log(state);
+}
+
+const mapStateToProps = state => {
+  return {
+    todos: changeDeleteButtonStates(state.todos, state.visibilityFilter)
+  }
 }
 
 const DeleteButtonReducer = connect(
@@ -12,4 +18,4 @@ const DeleteButtonReducer = connect(
   //mapDispatchToProps
 )(DeleteButton)
 
-
+export default DeleteButtonReducer

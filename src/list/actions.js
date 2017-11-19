@@ -8,6 +8,9 @@ export const FOLDER_IS_NOT_DELETED = "folderIsNotDeleted";
 export const FILE_IS_DELETED = "fileIsDeleted";
 export const FILE_IS_NOT_DELETED = "fileIsNotDeleted";
 
+export const BUTTON_IS_VISIBLE = "buttonIsVisible";
+export const BUTTON_IS_NOT_VISIBLE = "buttonIsNotVisible";
+
 export default function createActions(api) {
     return {
         loadFolderDetails: createLoadFolderDetails(api),
@@ -39,7 +42,6 @@ export const createDeleteFile = (api) => (parentId, id, error) => (dispatch) => 
           dispatch({ type: FILE_IS_NOT_DELETED, payload: error });
           dispatch(createGoBack(api)(parentId));  
         }
-        console.log(fileDeleteResponse);
     }).catch((err) => {
         console.error(err);
         dispatch({ type: FILE_IS_NOT_DELETED, payload: error });
@@ -57,7 +59,6 @@ export const createDeleteFolder = (api) => (info, id, error) => (dispatch) => {
         dispatch({ type: FOLDER_IS_NOT_DELETED, payload: error });
         dispatch(createGoBack(api)(info.parentId));
       }
-     console.log(folderDeleteResponse);
     }).catch((err) => {
         console.error(err);
         dispatch({ type: FOLDER_IS_NOT_DELETED, payload: error });
