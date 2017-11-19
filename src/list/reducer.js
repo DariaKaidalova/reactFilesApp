@@ -9,7 +9,7 @@ import {
     FILE_IS_DELETED, 
     FILE_IS_NOT_DELETED } from "./actions";
 
-export default function reducer(state = { folders: [], files: [], info: {}, isFolderError: false, isFileError: false }, { type, payload }) {
+export default function reducer(state = { folders: [], files: [], info: {}, errorInfo: {isFolderError: false, isFileError: false, name: ''} }, { type, payload }) {
     
     switch (type) {
         case FOLDER_INFO_FETCHED:
@@ -18,12 +18,23 @@ export default function reducer(state = { folders: [], files: [], info: {}, isFo
             return { ...state, folders: payload };
         case FILES_DETAILS_FETCHED:
             return { ...state, files: payload };
+
         case FOLDER_IS_DELETED:
-            state.isFolderError = false;
+            state.errorInfo.isFolderError = false;
             return { ...state, isFolderError: payload };
         case FOLDER_IS_NOT_DELETED:
-            state.isFolderError = true;
+            state.errorInfo.isFileError = false;
+            state.errorInfo.isFolderError = true;
             return { ...state, isFolderError: payload };
+
+        case FILE_IS_DELETED:
+            state.errorInfo.isFileError = false;
+            return { ...state, isFolderError: payload };
+        case FILE_IS_NOT_DELETED:
+            state.errorInfo.isFolderError = false;
+            state.errorInfo.isFileError = true;
+            return { ...state, isFolderError: payload };
+
         default:
             return state;
     }

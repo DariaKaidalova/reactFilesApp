@@ -30,18 +30,38 @@ export const createGoBack = (api) => (parentId) => (dispatch) => {
 };
 
 export const createDeleteFile = (api) => (parentId, id, error) => (dispatch) => {
-    api.file().delete(id).then((fileDeleteResponse) => {
+    api.file().delete('///').then((fileDeleteResponse) => {
+        if(fileDeleteResponse.ok) {
+          dispatch({ type: FILE_IS_DELETED, payload: error });
+          dispatch(createGoBack(api)(parentId));
+        }
+        else {
+          dispatch({ type: FILE_IS_NOT_DELETED, payload: error });
+          dispatch(createGoBack(api)(parentId));  
+        }
+        console.log(fileDeleteResponse);
+    }).catch((err) => {
+        console.error(err);
+        dispatch({ type: FILE_IS_NOT_DELETED, payload: error });
         dispatch(createGoBack(api)(parentId));
-    }).catch(error => console.error(error));
+    });
 };
 
 export const createDeleteFolder = (api) => (info, id, error) => (dispatch) => {
-    api.folder().delete(id).then((folder) => {
-        dispatch(createGoBack(api)(info.parentId));
+    api.folder().delete('//////').then((folderDeleteResponse) => {
+      if(folderDeleteResponse.ok) {
         dispatch({ type: FOLDER_IS_DELETED, payload: error });
-    }).catch((error) => {
-        console.error(error);
-        dispatch({ type: FILE_IS_NOT_DELETED, payload: error })
+        dispatch(createGoBack(api)(info.parentId));
+      }
+      else {
+        dispatch({ type: FOLDER_IS_NOT_DELETED, payload: error });
+        dispatch(createGoBack(api)(info.parentId));
+      }
+     console.log(folderDeleteResponse);
+    }).catch((err) => {
+        console.error(err);
+        dispatch({ type: FOLDER_IS_NOT_DELETED, payload: error });
+        dispatch(createGoBack(api)(info.parentId));
     });
 };
 

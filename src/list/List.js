@@ -7,6 +7,7 @@ import BackButton from "../components/BackButton";
 import File from "../components/File";
 import Folder from "../components/Folder";
 import Title from "../components/Title";
+import ErrorMessage from "../components/ErrorMessage";
 
 import grid from "getbase/src/scss/styles.scss";
 import listStyles from "./List.scss";
@@ -18,14 +19,16 @@ export class List extends React.Component {
     }
 
     render() {
-        const { loadFolderDetails, goBack, info, folders, files, deleteFile, deleteFolder, isFolderError, isFileError } = this.props;
-        console.log('list.js, isFolderError = '+isFolderError);
+        const { loadFolderDetails, goBack, info, folders, files, deleteFile, deleteFolder, errorInfo } = this.props;
+
         return (
             <div className={ cls(grid["container-m"], listStyles.folderDetails) }>
                 <nav className={ listStyles.folderNavigation }>
                     <BackButton goBack={ goBack } parentId={ info.parentId } />
                 </nav>
                 <Title { ...info } />
+                <ErrorMessage message={'Folder delete error'} error={errorInfo.isFolderError}/>
+                <ErrorMessage message={'File delete error'} error={errorInfo.isFileError}/>
                 {
                     folders.map((folder) => (
                         <Folder
@@ -33,7 +36,7 @@ export class List extends React.Component {
                             folder={folder}
                             onClick={ () => loadFolderDetails(folder) }
                             deleteFolder={ deleteFolder }
-                            error={isFolderError}
+                            error={errorInfo.isFolderError}
                         />
                     ))
                 }
@@ -45,7 +48,7 @@ export class List extends React.Component {
                             id={id}
                             parentId={parentId} 
                             deleteFile={ deleteFile }
-                            error={isFileError}/>
+                            error={errorInfo.isFileError}/>
                     ))
                 }
             </div>

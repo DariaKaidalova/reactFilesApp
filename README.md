@@ -17,8 +17,8 @@ Navigate to http://localhost:8080
 * Clicking on the button removes item on backend+
 (See readme.md in server directory for API documentation)
 * Delete button is replaced with waiting indicator until server responds
-* On success response from server item is removed from the list
-* On failure an error message is shown
+* On success response from server item is removed from the list+
+* On failure an error message is shown +
 
 
 Cover created functionality with unit tests where reasonable
